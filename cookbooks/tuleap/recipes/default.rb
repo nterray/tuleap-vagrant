@@ -13,3 +13,7 @@ end
 
 package 'php-pecl-json'
 package 'tuleap-all'
+
+cookbook_file '/etc/sysconfig/selinux' do
+  mode '0644'
+end
