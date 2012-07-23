@@ -6,3 +6,10 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+cookbook_file '/etc/yum.repos.d/tuleap.repo' do
+  mode '0644'
+end
+
+package 'php-pecl-json'
+package 'tuleap-all'
