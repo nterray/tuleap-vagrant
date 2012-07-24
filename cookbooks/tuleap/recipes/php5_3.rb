@@ -22,7 +22,8 @@ end
 
 
 # Disable SELinux
-cookbook_file '/etc/sysconfig/selinux' do
+cookbook_file '/etc/selinux/config' do
+  source 'selinux'
   mode '0644'
 end
 
