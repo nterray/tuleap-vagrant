@@ -11,16 +11,6 @@
 package 'php53'
 package 'java-1.6.0-openjdk'
 
-directory '/usr/share/codendi' do
-  action :delete
-  recursive true
-end
-
-link '/usr/share/codendi' do
-  to '/tuleap'
-end
-
-
 # Disable SELinux
 cookbook_file '/etc/selinux/config' do
   source 'selinux'
