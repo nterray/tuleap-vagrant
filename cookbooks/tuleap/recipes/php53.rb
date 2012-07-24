@@ -7,7 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# %w(php53 )
+# Use PHP 5.3 from CentOS repo
+cookbook_file '/etc/yum.repos.d/CentOS-Base.repo' do
+  source 'php53/CentOS-Base.repo'
+  mode '0644'
+end
+
 package 'php53'
 package 'java-1.6.0-openjdk'
 
