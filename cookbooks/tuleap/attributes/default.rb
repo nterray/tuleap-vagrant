@@ -1,4 +1,5 @@
 default['tuleap']['php_base'] = 'php'
+default['tuleap']['repo_file'] = '/etc/yum.repos.d/tuleap.repo'
 
 default['tuleap']['repositories']['remote']['stable']   = 'gitolite@tuleap.net:tuleap/tuleap/stable.git'
 default['tuleap']['repositories']['remote']['dev']      = 'gitolite@tuleap.net:tuleap/tuleap/dev.git'

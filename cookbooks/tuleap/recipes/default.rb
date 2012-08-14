@@ -15,7 +15,8 @@ template '/etc/yum.repos.d/CentOS-Base.repo' do
   variables :php_base => node['tuleap']['php_base']
 end
 
-cookbook_file '/etc/yum.repos.d/tuleap.repo' do
+cookbook_file node['tuleap']['repo_file'] do
+  source 'tuleap.repo'
   mode '0644'
 end
 

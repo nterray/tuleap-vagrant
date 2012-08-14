@@ -13,7 +13,7 @@ tuleap_dependencies_for 'production' do
 end
 
 # Disable official Tuleap repo (to prevent conflict with the packages to be built)
-file '/etc/yum.repos.d/tuleap.repo' do
+file node['tuleap']['repo_file'] do
   action :delete
 end
 
