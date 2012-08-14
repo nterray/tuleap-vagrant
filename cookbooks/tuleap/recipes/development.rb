@@ -11,17 +11,13 @@ include_recipe 'tuleap::selinux'
 include_recipe 'tuleap::iptables'
 
 # Remove the tuleap production package (to prevent conflict with the development version)
-node['tuleap']['production']['dependencies'].each do |name|
-  package name do
-    action :purge
-  end
+tuleap_dependencies_for 'production' do
+  action :purge
 end
 
 # Install the development tools
-node['tuleap']['development']['dependencies'].each do |name|
-  package name do
-    action :install
-  end
+tuleap_dependencies_for 'development' do
+  action :install
 end
 
 user node['tuleap']['development']['user'] do

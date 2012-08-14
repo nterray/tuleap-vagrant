@@ -19,8 +19,8 @@ cookbook_file '/etc/yum.repos.d/tuleap.repo' do
   mode '0644'
 end
 
-node['tuleap']['production']['dependencies'].each do |name|
-  package name
+tuleap_dependencies_for 'production' do
+  action :install
 end
 
 # TODO:
