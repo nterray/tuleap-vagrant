@@ -34,14 +34,14 @@ default['tuleap']['packaging']['dependencies'] = %w(
   mysql-devel
   pam-devel
   pcre-devel
-  php53
-  php53-devel
-  php53-gd
-  php53-mbstring
-  php53-mysql
-  php53-process
-  php53-soap
-  php53-xml
+  #{php_base}
+  #{php_base}-devel
+  #{php_base}-gd
+  #{php_base}-mbstring
+  #{php_base}-mysql
+  #{php_base}-process
+  #{php_base}-soap
+  #{php_base}-xml
   python-devel
   rcs
   rpm-build

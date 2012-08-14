@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+php_base = node['tuleap']['php_base']
+
 # Remove the production dependencies (to prevent conflict with the packages to be built)
 node['tuleap']['production']['dependencies'].each do |name|
   package name do
@@ -16,7 +18,7 @@ end
 
 # Install the packaging required RPMs
 node['tuleap']['packaging']['dependencies'].each do |name|
-  package name
+  package eval("\"#{name}\"")
 end
 
 # Add the packaging user to the mock group (required for building RPMs)
