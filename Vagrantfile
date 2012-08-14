@@ -9,11 +9,12 @@ Vagrant::Config.run do |config|
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
   # config.vm.network :hostonly, "192.168.33.10"
+  config.vm.network :hostonly, '10.11.13.11'
 
   # Assign this VM to a bridged network, allowing you to connect directly to a
   # network using the host's network device. This makes the VM appear as another
   # physical device on your network.
-  config.vm.network :bridged
+  # config.vm.network :bridged
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
@@ -23,19 +24,22 @@ Vagrant::Config.run do |config|
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
   config.vm.share_folder 'v-tuleap',
-                         '/usr/share/codendi',
-                         '../tuleap',
-    :owner => 'codendiadm',
-    :group => 'codendiadm'
+                         '/mnt/tuleap',
+                         '..',
+                         :nfs => true
+  
+  config.nfs.map_uid = Process.uid
+  config.nfs.map_gid = Process.gid
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = 'cookbooks'
     chef.roles_path     = 'roles'
     chef.data_bags_path = 'data_bags'
     
-    chef.add_recipe 'tuleap::php53'
-  
-    # You may also specify custom JSON attributes:
-    # chef.json = { :mysql_password => "foo" }
+    chef.add_role 'development'
+    
+    chef.json = {:tuleap => {:php_base    => 'php53',
+                             :development => {:uid  => config.nfs.map_uid,
+                                              :gid  => config.nfs.map_gid}}}
   end
 end
