@@ -8,8 +8,39 @@ default['tuleap']['repositories']['local']['manifest']  = '/mnt/tuleap/manifest'
 
 default['tuleap']['production']['base_dir'] = '/usr/share/codendi'
 default['tuleap']['production']['dependencies'] = %w(
-  php-pecl-json
+  cvs-tuleap
+  cvsgraph
+  elasticsearch
+  geshi
+  gitolite
+  highlight
+  htmlpurifier
+  jpgraph-tuleap
+  libnss-mysql
+  mailman-tuleap
+  manifest
+  openfire-tuleap-plugins
+  #{php_base}-pear
+  #{php_base}-pear-Auth-SASL
+  #{php_base}-pear-HTTP
+  #{php_base}-pear-HTTP-Download
+  #{php_base}-pear-HTTP-Header
+  #{php_base}-pear-Mail
+  #{php_base}-pear-Mail-Mbox
+  #{php_base}-pear-Mail-Mime
+  #{php_base}-pear-Mail-mimeDecode
+  #{php_base}-pear-Net-SMTP
+  #{php_base}-pear-Net-Socket
+  #{php_base}-pecl-apc
+  #{php_base}-pecl-json
+  #{php_base}-pecl-oci8
+  #{php_base}-pecl-xdebug
+  #{php_base}-Smarty
+  #{php_base}-zendframework
+  sabredav
+  tuleap
   tuleap-all
+  viewvc-tuleap
 )
 
 default['tuleap']['development']['base_dir'] = '/mnt/tuleap'
