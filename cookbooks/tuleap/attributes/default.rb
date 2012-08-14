@@ -52,6 +52,8 @@ default['tuleap']['packaging']['base_dir'] = '~/rpmbuild'
 default['tuleap']['packaging']['user'] = default['tuleap']['development']['user']
 default['tuleap']['packaging']['dependencies'] = %w(
   byacc
+  createrepo
+  enscript
   flex
   freetype-devel
   gcc-c++
@@ -63,7 +65,9 @@ default['tuleap']['packaging']['dependencies'] = %w(
   libpng-devel
   libtool
   make
+  mock
   mysql-devel
+  MySQL-python
   pam-devel
   pcre-devel
   #{php_base}

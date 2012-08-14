@@ -37,9 +37,10 @@ Vagrant::Config.run do |config|
     chef.data_bags_path = 'data_bags'
     
     chef.add_role 'development'
+    # chef.add_recipe 'tuleap::build'
     
     chef.json = {:tuleap => {:php_base    => 'php53',
-                             :development => {:uid  => config.nfs.map_uid,
-                                              :gid  => config.nfs.map_gid}}}
+                             :development => {:uid   => config.nfs.map_uid,
+                                              :gid   => config.nfs.map_gid}}}
   end
 end
