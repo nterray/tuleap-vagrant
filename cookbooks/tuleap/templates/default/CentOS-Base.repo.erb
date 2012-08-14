@@ -16,8 +16,10 @@ mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo
 #baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+<% unless @php_base == 'php53' %>
 # Prevent PHP 5.3 conflicts
 exclude=php53*
+<% end %>
 
 #released updates 
 [updates]

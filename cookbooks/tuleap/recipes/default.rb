@@ -10,9 +10,9 @@
 include_recipe 'tuleap::selinux'
 include_recipe 'tuleap::iptables'
 
-# Disable PHP from CentOS repository
-cookbook_file '/etc/yum.repos.d/CentOS-Base.repo' do
+template '/etc/yum.repos.d/CentOS-Base.repo' do
   mode '0644'
+  variables :php_base => node['tuleap']['php_base']
 end
 
 cookbook_file '/etc/yum.repos.d/tuleap.repo' do
