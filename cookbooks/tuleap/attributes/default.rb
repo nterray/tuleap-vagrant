@@ -21,6 +21,8 @@ default['tuleap']['production']['dependencies'] = %w(
   mailman-tuleap
   manifest
   openfire-tuleap-plugins
+  php
+  php-common
   php-pear
   php-pear-Auth-SASL
   php-pear-HTTP
