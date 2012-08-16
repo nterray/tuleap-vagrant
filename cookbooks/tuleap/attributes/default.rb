@@ -21,23 +21,23 @@ default['tuleap']['production']['dependencies'] = %w(
   mailman-tuleap
   manifest
   openfire-tuleap-plugins
-  #{php_base}-pear
-  #{php_base}-pear-Auth-SASL
-  #{php_base}-pear-HTTP
-  #{php_base}-pear-HTTP-Download
-  #{php_base}-pear-HTTP-Header
-  #{php_base}-pear-Mail
-  #{php_base}-pear-Mail-Mbox
-  #{php_base}-pear-Mail-Mime
-  #{php_base}-pear-Mail-mimeDecode
-  #{php_base}-pear-Net-SMTP
-  #{php_base}-pear-Net-Socket
-  #{php_base}-pecl-apc
-  #{php_base}-pecl-json
-  #{php_base}-pecl-oci8
-  #{php_base}-pecl-xdebug
-  #{php_base}-Smarty
-  #{php_base}-zendframework
+  php-pear
+  php-pear-Auth-SASL
+  php-pear-HTTP
+  php-pear-HTTP-Download
+  php-pear-HTTP-Header
+  php-pear-Mail
+  php-pear-Mail-Mbox
+  php-pear-Mail-Mime
+  php-pear-Mail-mimeDecode
+  php-pear-Net-SMTP
+  php-pear-Net-Socket
+  php-pecl-apc
+  php-pecl-json
+  php-pecl-oci8
+  php-pecl-xdebug
+  php-Smarty
+  php-zendframework
   sabredav
   tuleap
   tuleap-all
