@@ -12,7 +12,8 @@ include_recipe 'tuleap::iptables'
 
 template '/etc/yum.repos.d/CentOS-Base.repo' do
   mode '0644'
-  variables :php_base => node['tuleap']['php_base']
+  variables :php_base => node['tuleap']['php_base'],
+            :mirror   => node['tuleap']['centos_mirror']
 end
 
 cookbook_file node['tuleap']['repo_file'] do
