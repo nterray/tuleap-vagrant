@@ -13,7 +13,7 @@
 [base]
 name=CentOS-$releasever - Base
 <% if @mirror %>
-baseurl=<%= @mirror %>/$releasever/os/$basearch/
+baseurl=<%= @mirror %>/os/$basearch/
 <% else %>
 mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os
 <% end %>
@@ -28,7 +28,7 @@ exclude=php53*
 [updates]
 name=CentOS-$releasever - Updates
 <% if @mirror %>
-baseurl=<%= @mirror %>/$releasever/updates/$basearch/
+baseurl=<%= @mirror %>/updates/$basearch/
 <% else %>
 mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates
 <% end %>
@@ -39,7 +39,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
 [extras]
 name=CentOS-$releasever - Extras
 <% if @mirror %>
-baseurl=<%= @mirror %>/$releasever/extras/$basearch/
+baseurl=<%= @mirror %>/extras/$basearch/
 <% else %>
 mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras
 <% end %>
@@ -50,7 +50,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
 [centosplus]
 name=CentOS-$releasever - Plus
 <% if @mirror %>
-baseurl=<%= @mirror %>/$releasever/centosplus/$basearch/
+baseurl=<%= @mirror %>/centosplus/$basearch/
 <% else %>
 mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus
 <% end %>
@@ -62,7 +62,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
 [contrib]
 name=CentOS-$releasever - Contrib
 <% if @mirror %>
-baseurl=<%= @mirror %>/$releasever/contrib/$basearch/
+baseurl=<%= @mirror %>/contrib/$basearch/
 <% else %>
 mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=contrib
 <% end %>
