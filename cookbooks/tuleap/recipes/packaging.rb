@@ -22,10 +22,26 @@ tuleap_dependencies_for 'packaging' do
   action :install
 end
 
-# Add the packaging user to the mock group (required for building RPMs)
+# Create and add the packaging user to the mock group (required for building RPMs)
+user node['tuleap']['packaging']['user']
+
 group 'mock' do
   members [node['tuleap']['packaging']['user']]
   append true
+end
+
+# Setup local yum repo for Tuleap
+yum_repo 'tuleap-local' do
+  action    :add
+  template  true
+  variables :local_repo => node['tuleap']['yum_repos']['local'],
+            :enabled    => 1
+  mode      '0644'
+end
+
+createrepo 'tuleap-local' do
+  user node['tuleap']['packaging']['user']
+  path node['tuleap']['yum_repos']['local']
 end
 
 # TODO:

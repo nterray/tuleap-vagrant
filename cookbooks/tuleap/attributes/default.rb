@@ -1,6 +1,9 @@
 default['tuleap']['php_base'] = 'php'
 default['tuleap']['repo_file'] = '/etc/yum.repos.d/tuleap.repo'
 
+default['tuleap']['yum_repos']['dev'] = 'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
+default['tuleap']['yum_repos']['local'] = '/home/build/rpmbuild'
+
 default['tuleap']['repositories']['remote']['stable']   = 'gitolite@tuleap.net:tuleap/tuleap/stable.git'
 default['tuleap']['repositories']['remote']['dev']      = 'gitolite@tuleap.net:tuleap/tuleap/dev.git'
 default['tuleap']['repositories']['remote']['manifest'] = 'gitolite@tuleap.net:tuleap/deps/manifest.git'
@@ -51,7 +54,7 @@ default['tuleap']['development']['user'] = 'tuleap-dev'
 default['tuleap']['development']['dependencies'] = %w()
 
 default['tuleap']['packaging']['base_dir'] = '~/rpmbuild'
-default['tuleap']['packaging']['user'] = default['tuleap']['development']['user']
+default['tuleap']['packaging']['user'] = 'build'
 default['tuleap']['packaging']['dependencies'] = %w(
   byacc
   createrepo
