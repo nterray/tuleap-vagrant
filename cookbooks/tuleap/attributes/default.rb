@@ -2,7 +2,7 @@ default['tuleap']['php_base'] = 'php'
 default['tuleap']['repo_file'] = '/etc/yum.repos.d/tuleap.repo'
 
 default['tuleap']['yum_repos']['dev'] = 'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
-default['tuleap']['yum_repos']['local'] = '/home/build/rpmbuild'
+default['tuleap']['yum_repos']['local'] = '/mnt/tuleap/manifest/repos/centos/5/x86_64'
 
 default['tuleap']['repositories']['remote']['stable']   = 'gitolite@tuleap.net:tuleap/tuleap/stable.git'
 default['tuleap']['repositories']['remote']['dev']      = 'gitolite@tuleap.net:tuleap/tuleap/dev.git'
