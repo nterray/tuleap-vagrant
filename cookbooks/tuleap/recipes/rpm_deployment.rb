@@ -7,6 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# Remove existing manual install
+link node['tuleap']['install_dir'] do
+  action :delete
+  only_if "test -L #{node['tuleap']['install_dir']}"
+end
+
 # Remove YUM repos that are not compatible with Tuleap's one
 package('epel-release') { action :purge }
 yum_repo('epel') { action :remove }
@@ -37,10 +43,12 @@ end
 #   createrepo URI.parse(node['tuleap']['yum_repos']['local']['baseurl']).path
 # end
 
-# Remove existing manual install
-link node['tuleap']['install_dir'] do
-  action :delete
-  only_if "test -L #{node['tuleap']['install_dir']}"
+script 'yum clean all' do
+  interpreter 'bash'
+  code <<-SH
+    yum clean all
+    yum clean expire-cache
+  SH
 end
 
 # Install JSON PECL extension for PHP (needed by Tuleap):

@@ -34,6 +34,10 @@ mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo
 <% end %>
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+<% unless @php_base == 'php53' %>
+# Prevent PHP 5.3 conflicts
+exclude=php53*
+<% end %>
 
 #additional packages that may be useful
 [extras]
@@ -45,6 +49,10 @@ mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo
 <% end %>
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+<% unless @php_base == 'php53' %>
+# Prevent PHP 5.3 conflicts
+exclude=php53*
+<% end %>
 
 #additional packages that extend functionality of existing packages
 [centosplus]
@@ -57,6 +65,10 @@ mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+<% unless @php_base == 'php53' %>
+# Prevent PHP 5.3 conflicts
+exclude=php53*
+<% end %>
 
 #contrib - packages by Centos Users
 [contrib]
@@ -69,3 +81,7 @@ mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+<% unless @php_base == 'php53' %>
+# Prevent PHP 5.3 conflicts
+exclude=php53*
+<% end %>
