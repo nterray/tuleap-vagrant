@@ -1,17 +1,18 @@
 #
 # Cookbook Name:: tuleap
-# Recipe:: default
+# Recipe:: build
 #
 # Copyright 2012, Enalean
 #
 # All rights reserved - Do Not Redistribute
 #
 
-script 'Build Tuleap (S)RPMS' do
+script 'Build RPM packages for Tuleap and its dependencies from local git repository' do
   interpreter 'bash'
-  user 'root' #node['tuleap']['packaging']['user']
-  cwd node['tuleap']['repositories']['local']['manifest']
+  user 'root' #node['tuleap']['build_user']
+  cwd node['tuleap']['manifest_dir']
   code <<-SH
-    ./build --php-base=#{node['tuleap']['php_base']}
+    make specs
+    make
   SH
 end

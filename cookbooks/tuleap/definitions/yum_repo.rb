@@ -14,7 +14,7 @@ define :yum_repo, :action => 'add' do
       end
     end
   when 'remove'
-    `rpm -qa | grep -i #{params[:name]}`.split.each do |name|
+    `repoquery --repoid=#{params[:name]} -a`.split.each do |name|
       package name do
         action :purge
       end

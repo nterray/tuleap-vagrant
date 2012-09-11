@@ -37,12 +37,15 @@ Vagrant::Config.run do |config|
     chef.data_bags_path = 'data_bags'
     
     # chef.add_role 'tuleap'
-    chef.add_role 'development'
+    chef.add_role 'tuleap_packaging'
     # chef.add_recipe 'tuleap::build'
     
-    chef.json = {:tuleap => {:php_base      => 'php53',
-                             # :centos_mirror => 'ftp://degaine.cro.enalean.com/ftp.centos.org/5.8',
-                             :development   => {:uid   => config.nfs.map_uid,
-                                                :gid   => config.nfs.map_gid}}}
+    chef.json = {:tuleap => {
+      :yum_repo => 'local',
+      :php_base => 'php53',
+      # :centos_mirror => 'ftp://degaine.cro.enalean.com/ftp.centos.org/5.8',
+      # :development   => {:uid   => config.nfs.map_uid,
+      #                    :gid   => config.nfs.map_gid}
+    }}
   end
 end
