@@ -49,4 +49,8 @@ end
 package('php-pecl-json') { only_if { node['tuleap']['php_base'] == 'php' } }
 
 # Install Tuleap RPM
-package 'tuleap-all'
+if node['tuleap']['php_base'] == 'php53'
+  package 'tuleap-all-php53'
+else
+  package 'tuleap-all'
+end
