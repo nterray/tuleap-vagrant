@@ -75,10 +75,15 @@ Move the new `tuleap.box` to your public server, and you're done.
 ## Creating the initial CentOS 5.8 box
 
 - Download a CentOS 5.8 x86_64 netinstall iso.
-- Create a new virtual machine in VirtualBox with 20GB harddisk (building RPM packages can require a lot of space)
+- Create a new virtual machine in VirtualBox, named `CentOS-5.8-x86_64-chef`
+  * Set 20GB for harddisk size, dynamically allocated (building RPM packages can require a lot of space)
+  * Use the default network settings: NAT (you may need to forward your SSH port for `vagrant package` to work)
 - Install the OS
-  * Website URL: mirrors.ircam.fr
-  * CentOS directory: /pub/CentOS/5.8/os/x86_64/
-- Check that VBOX_VERSION in bootstrap.sh matches your VirtualBox version.
-- Copy the bootstrap.sh to the VM and run it as root.
-- ...
+  * Website URL: `mirrors.ircam.fr`
+  * CentOS directory: `/pub/CentOS/5.8/os/x86_64/`
+- Check that `VBOX_VERSION` in `bootstrap.sh` matches your VirtualBox version.
+- Copy the `bootstrap.sh` to the VM and run it as root.
+- Finally, assuming your VBox VM name is "CentOS-5.8-x86_64-chef",
+  run: `vagrant package --base CentOS-5.8-x86_64-chef --output centos-5.8-x86_64-chef.box`
+- Now you can make `centos-5.8-x86_64-chef.box` available on some web server,
+  and use it to build `tuleap.box`
