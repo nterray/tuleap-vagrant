@@ -32,6 +32,8 @@ Vagrant::Config.run do |config|
   config.nfs.map_gid = Process.gid
 
   config.vm.provision :chef_solo do |chef|
+    chef.log_level = :debug
+    
     chef.cookbooks_path = 'cookbooks'
     chef.roles_path     = 'roles'
     chef.data_bags_path = 'data_bags'
