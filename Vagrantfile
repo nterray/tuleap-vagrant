@@ -2,7 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
-  config.vm.box = "centos5_8"
+  config.vm.box = 'centos-5.8-x86_64-chef'
+  config.vm.box_url = 'http://192.168.1.222/~sebn/centos-5.8-x86_64-chef.box'
 
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as
