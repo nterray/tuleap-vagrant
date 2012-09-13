@@ -67,6 +67,7 @@ Move the new `tuleap.box` to your public server, and you're done.
 - http://www.if-not-true-then-false.com/2010/install-virtualbox-guest-additions-on-fedora-centos-red-hat-rhel/
 - http://vagrantup.com/v1/docs/getting-started/index.html
 - http://pyfunc.blogspot.fr/2011/11/creating-base-box-from-scratch-for.html
+- http://www.yodi.me/blog/2011/10/26/build-base-box-vagrant-ubuntu-oneiric-11.10-server/
 
 [1]: http://www.virtualbox.org/
 [2]: http://vagrantup.com/
