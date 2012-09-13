@@ -62,3 +62,9 @@ if node['tuleap']['php_base'] == 'php53'
 else
   package 'tuleap-all'
 end
+
+# cookbook_file '/root/setup_runner.sh'
+# execute 'sh /root/setup_runner.sh' do
+#   user 'root'
+#   cwd '/root'
+# end
