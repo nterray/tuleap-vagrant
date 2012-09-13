@@ -32,4 +32,4 @@ wget http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VBoxGuestAdditions_
 mount -o loop VBoxGuestAdditions_$VBOX_VERSION.iso /mnt
 sh /mnt/VBoxLinuxAdditions.run --nox11
 umount /mnt
-rm VBoxGuestAdditions_$VBOX_VERSION.iso
+rm -f VBoxGuestAdditions_$VBOX_VERSION.iso
