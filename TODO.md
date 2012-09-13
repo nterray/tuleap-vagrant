@@ -1,6 +1,8 @@
 # To Do
 
-- Tuleap sources shared folder
-- Tuleap setup.sh automation
-- Cookbook for PHP 5.3
-
+- Automatically run /usr/share/tuleap-install/setup.sh
+- Set up the jabber server
+- Set up the mail server
+- Wait for Vagrant to support LXC
+- Distribute both CentOS and Tuleap *.box files
+- Distribute Vagrantfile with the *.box file
