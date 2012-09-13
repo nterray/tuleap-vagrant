@@ -71,3 +71,14 @@ Move the new `tuleap.box` to your public server, and you're done.
 [1]: http://www.virtualbox.org/
 [2]: http://vagrantup.com/
 [3]: http://www.opscode.com/chef/
+
+## Creating the initial CentOS 5.8 box
+
+- Download a CentOS 5.8 x86_64 netinstall iso.
+- Create a new virtual machine in VirtualBox with 20GB harddisk (building RPM packages can require a lot of space)
+- Install the OS
+  * Website URL: mirrors.ircam.fr
+  * CentOS directory: /pub/CentOS/5.8/os/x86_64/
+- Check that VBOX_VERSION in bootstrap.sh matches your VirtualBox version.
+- Copy the bootstrap.sh to the VM and run it as root.
+- ...
