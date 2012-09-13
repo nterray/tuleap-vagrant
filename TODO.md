@@ -7,3 +7,4 @@
 - Distribute both CentOS and Tuleap *.box files
 - Distribute Vagrantfile with the *.box file
 - Set NFS uid/gid to 0 ?
+- Use Veewee ? https://github.com/jedi4ever/veewee
