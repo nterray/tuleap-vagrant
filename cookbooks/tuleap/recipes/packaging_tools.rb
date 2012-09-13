@@ -32,3 +32,9 @@ package 'createrepo'
 #   python-devel
 #   rcs
 #   rpmgraph (EPEL)
+
+group 'mock' do
+  action :manage
+  members node['tuleap']['packaging_user']
+  append true
+end
