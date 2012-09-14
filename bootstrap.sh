@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VBOX_VERSION="4.1.18"
+VBOX_VERSION="4.2.0"
 
 # Packages clean-up
 yum -y update
@@ -25,7 +25,7 @@ echo $VBOX_VERSION >> /home/vagrant/.vbox_version
 date > /etc/vagrant_box_build_time
 
 # VirtualBox guest additions
-yum -y install kernel-devel
+yum -y install kernel-devel gcc
 export KERN_DIR=/usr/src/kernels/`uname -r`-`uname -m`
 cd /tmp
 wget http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VBoxGuestAdditions_$VBOX_VERSION.iso
