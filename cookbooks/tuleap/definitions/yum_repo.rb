@@ -14,10 +14,14 @@ define :yum_repo, :action => 'add' do
       end
     end
   when 'remove'
-    `repoquery --repoid=#{params[:name]} -a`.split.each do |name|
-      package name do
-        action :purge
-      end
+    script "yum -y erase <#{params[:name]} packages>" do
+      interpreter 'bash'
+      code <<-SH
+        packages=`repoquery --repoid=#{params[:name]} -a`
+        if [ "0$packages" != "0" ]; then
+          yum -y erase $packages
+        fi
+      SH
     end
     
     file "/etc/yum.repos.d/#{params[:name]}.repo" do

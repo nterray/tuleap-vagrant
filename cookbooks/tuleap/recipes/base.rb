@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+package 'yum-utils'
+
 # Disable SElinux
 cookbook_file '/etc/selinux/config' do
   source 'selinux'
