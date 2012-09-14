@@ -84,7 +84,11 @@ Move the new `tuleap.box` to your public server, and you're done.
   * CentOS directory: `/pub/CentOS/5.8/os/x86_64/`
 - Check that `VBOX_VERSION` in `bootstrap.sh` matches your VirtualBox version.
 - Copy the `bootstrap.sh` to the VM and run it as root.
-- Finally, assuming your VBox VM name is "CentOS-5.8-x86_64-chef",
-  run: `vagrant package --base CentOS-5.8-x86_64-chef --output centos-5.8-x86_64-chef.box`
+- Manually comment the "Default requiretty" line in /etc/sudoers
+
+- Finally, assuming your VBox VM name is "CentOS-5.8-x86_64-chef", run:
+  `vagrant package --base CentOS-5.8-x86_64-chef --output centos-5.8-x86_64-chef.box`
+- In case vagrant messes up with SSH port, try using NAT + forwarding port 22
+  in VirtualBox Configuration.
 - Now you can make `centos-5.8-x86_64-chef.box` available on some web server,
   and use it to build `tuleap.box`
