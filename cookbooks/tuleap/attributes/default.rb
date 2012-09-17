@@ -1,18 +1,23 @@
 default['tuleap']['php_base']    = 'php'
 default['tuleap']['install_dir'] = '/usr/share/codendi'
 default['tuleap']['yum_repo']    = 'stable'
+default['tuleap']['developer']   = 'tuleap-dev'
 
 default['tuleap']['yum_repos']['stable'] = 'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
 default['tuleap']['yum_repos']['dev']    = 'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
 default['tuleap']['yum_repos']['local']  = 'file:///mnt/tuleap/manifest/repos/centos/5/$basearch'
 
-# default['tuleap']['php_base'] = 'php'
-# default['tuleap']['repo_file'] = '/etc/yum.repos.d/tuleap.repo'
-# 
+default['tuleap']['createrepos'] = %w(
+  /mnt/tuleap/manifest/repos/centos/5/i386
+  /mnt/tuleap/manifest/repos/centos/5/i386-php53
+  /mnt/tuleap/manifest/repos/centos/5/SRPMS
+  /mnt/tuleap/manifest/repos/centos/5/x86_64
+  /mnt/tuleap/manifest/repos/centos/5/x86_64-php53
+)
+
 # default['tuleap']['repositories']['local']['tuleap']    = '/mnt/tuleap/tuleap'
 # default['tuleap']['repositories']['local']['manifest']  = '/mnt/tuleap/manifest'
 # 
-# default['tuleap']['production']['base_dir'] = '/usr/share/codendi'
 # default['tuleap']['production']['dependencies'] = %w(
 #   cvs-tuleap
 #   cvsgraph
