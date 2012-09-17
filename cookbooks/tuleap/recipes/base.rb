@@ -29,9 +29,7 @@ end
 end
 
 # Customize the default CentOS repo to exclude incompatible PHP packages
-yum_repo 'CentOS-Base' do
-  action :add
-  template true
+template "/etc/yum.repos.d/CentOS-Base.repo" do
   mode '0644'
   variables :php_base => node['tuleap']['php_base'],
             :mirror   => node['tuleap']['mirror']
@@ -44,5 +42,25 @@ package node['tuleap']['php_base']
 include_recipe 'yum::epel'
 disable_yum_repository 'epel'
 disable_yum_repository 'epel-testing'
+
+# Set up Tuleap stable repo
+tuleap_yum_repository 'stable' do
+  description 'Official Releases'
+  url         'https://tuleap.net/file/pub/tuleap/yum/tuleap/4.0/$basearch/'
+end
+
+# Set up Tuleap development repo
+tuleap_yum_repository 'dev' do
+  description 'Main Development Branch'
+  url         'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
+end
+
+# Set up Tuleap local repo
+php53 = (node['tuleap']['php_base'] == 'php53' ? '-php53' : '')
+
+tuleap_yum_repository 'local' do
+  description 'Local Repository'
+  url         "file:///mnt/tuleap/manifest/repos/centos/5/$basearch#{php53}"
+end
 
 epel_package 'git'

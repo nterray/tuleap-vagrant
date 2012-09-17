@@ -21,7 +21,6 @@ case node['tuleap']['build_platforms']
 when 'all'
   platforms = %w(centos/5/i386
                  centos/5/i386-php53
-                 centos/5/SRPMS
                  centos/5/x86_64
                  centos/5/x86_64-php53)
 when 'current'

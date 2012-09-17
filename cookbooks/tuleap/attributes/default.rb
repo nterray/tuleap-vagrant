@@ -4,10 +4,6 @@ default['tuleap']['yum_repo']       = 'stable'
 default['tuleap']['packaging_user'] = 'tuleap-dev'
 default['tuleap']['manifest_dir']   = '/mnt/tuleap/manifest'
 
-default['tuleap']['yum_repos']['stable'] = 'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
-default['tuleap']['yum_repos']['dev']    = 'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
-default['tuleap']['yum_repos']['local']  = 'file:///mnt/tuleap/manifest/repos/centos/5/$basearch'
-
 default['tuleap']['createrepos'] = %w(
   /mnt/tuleap/manifest/repos/centos/5/i386
   /mnt/tuleap/manifest/repos/centos/5/i386-php53
