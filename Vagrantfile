@@ -53,6 +53,7 @@ Vagrant::Config.run do |config|
       :yum_repo       => 'local',
       :php_base       => 'php53',
       :packaging_user => 'vagrant',
+      :build_platforms => 'current',
       # :centos_mirror => 'ftp://degaine.cro.enalean.com/ftp.centos.org/5.8',
       # :development   => {:uid   => config.nfs.map_uid,
       #                    :gid   => config.nfs.map_gid}

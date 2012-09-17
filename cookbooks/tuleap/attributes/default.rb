@@ -1,7 +1,8 @@
-default['tuleap']['php_base']    = 'php'
-default['tuleap']['install_dir'] = '/usr/share/codendi'
-default['tuleap']['yum_repo']    = 'stable'
-default['tuleap']['developer']   = 'tuleap-dev'
+default['tuleap']['php_base']       = 'php'
+default['tuleap']['install_dir']    = '/usr/share/codendi'
+default['tuleap']['yum_repo']       = 'stable'
+default['tuleap']['packaging_user'] = 'tuleap-dev'
+default['tuleap']['manifest_dir']   = '/mnt/tuleap/manifest'
 
 default['tuleap']['yum_repos']['stable'] = 'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
 default['tuleap']['yum_repos']['dev']    = 'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
@@ -14,6 +15,8 @@ default['tuleap']['createrepos'] = %w(
   /mnt/tuleap/manifest/repos/centos/5/x86_64
   /mnt/tuleap/manifest/repos/centos/5/x86_64-php53
 )
+
+default['tuleap']['build_platforms'] = 'all'
 
 # default['tuleap']['repositories']['local']['tuleap']    = '/mnt/tuleap/tuleap'
 # default['tuleap']['repositories']['local']['manifest']  = '/mnt/tuleap/manifest'

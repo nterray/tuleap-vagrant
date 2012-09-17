@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe 'tuleap::packaging_tools'
-
 node['tuleap']['createrepos'].each do |path|
   createrepo path do
     user node['tuleap']['packaging_user']
