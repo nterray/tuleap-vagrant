@@ -59,5 +59,5 @@ epel_package 'git'
 epel_package 'perl-HTML-Template'
 
 remote_rpm 'openfire' do
-  source 'http://download.igniterealtime.org/openfire/openfire-3.7.1-1.i386.rpm'
+  source 'http://download.igniterealtime.org/openfire/openfire-3.6.4-1.i386.rpm'
 end
