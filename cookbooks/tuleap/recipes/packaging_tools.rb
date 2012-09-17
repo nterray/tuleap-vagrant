@@ -18,12 +18,6 @@ group 'mock' do
   append true
 end
 
-node['tuleap']['createrepos'].each do |path|
-  createrepo path do
-    user node['tuleap']['packaging_user']
-  end
-end
-
 #   byacc
 #   enscript
 #   flex
