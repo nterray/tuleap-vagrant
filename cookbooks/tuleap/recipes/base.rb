@@ -55,14 +55,6 @@ tuleap_yum_repository 'dev' do
   url         'ftp://ci.tuleap.net/yum/tuleap/dev/$basearch'
 end
 
-# Set up Tuleap local repo
-php53 = (node['tuleap']['php_base'] == 'php53' ? '-php53' : '')
-
-tuleap_yum_repository 'local' do
-  description 'Local Repository'
-  url         "file:///mnt/tuleap/manifest/repos/centos/5/$basearch#{php53}"
-end
-
 epel_package 'git'
 epel_package 'perl-HTML-Template'
 
