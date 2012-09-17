@@ -31,7 +31,8 @@ else
   raise "Expected node['tuleap']['build_plateforms'] to be one of {all|current}, but was #{node['tuleap']['build_plateforms']}"
 end
 
-execute "make PLATEFORMS='#{platforms}' HOME=/home/vagrant" do
-  user node['tuleap']['packaging_user']
-  cwd  node['tuleap']['manifest_dir']
-end
+execute "su -l vagrant -c 'make -C #{node['tuleap']['manifest_dir']} PLATEFORMS=\"#{platforms}\"'" #do # HOME=/home/vagrant
+  # user node['tuleap']['packaging_user']
+  # group 'mock'
+  # cwd  node['tuleap']['manifest_dir']
+# end
