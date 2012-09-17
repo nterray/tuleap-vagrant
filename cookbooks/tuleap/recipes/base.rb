@@ -39,3 +39,10 @@ end
 
 # Install PHP
 package node['tuleap']['php_base']
+
+# Set up EPEL repo (disabled by default)
+include_recipe 'yum::epel'
+disable_yum_repository 'epel'
+disable_yum_repository 'epel-testing'
+
+epel_package 'git'
