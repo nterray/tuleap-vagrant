@@ -5,11 +5,11 @@ default['tuleap']['packaging_user'] = 'tuleap-dev'
 default['tuleap']['manifest_dir']   = '/mnt/tuleap/manifest'
 
 default['tuleap']['createrepos'] = %w(
-  /mnt/tuleap/manifest/repos/centos/5/i386
-  /mnt/tuleap/manifest/repos/centos/5/i386-php53
-  /mnt/tuleap/manifest/repos/centos/5/SRPMS
-  /mnt/tuleap/manifest/repos/centos/5/x86_64
-  /mnt/tuleap/manifest/repos/centos/5/x86_64-php53
+  /home/vagrant/repos/centos/5/i386
+  /home/vagrant/repos/centos/5/i386-php53
+  /home/vagrant/repos/centos/5/SRPMS
+  /home/vagrant/repos/centos/5/x86_64
+  /home/vagrant/repos/centos/5/x86_64-php53
 )
 
 default['tuleap']['build_platforms'] = 'all'

@@ -18,6 +18,6 @@ php53 = (node['tuleap']['php_base'] == 'php53' ? '-php53' : '')
 
 tuleap_yum_repository 'local' do
   description 'Local Repository'
-  url         "file:///mnt/tuleap/manifest/repos/centos/5/$basearch#{php53}"
+  url         "file:///home/vagrant/repos/centos/5/$basearch#{php53}"
 end
 
