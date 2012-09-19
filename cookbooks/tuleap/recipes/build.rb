@@ -12,11 +12,6 @@
 #   cwd  node['tuleap']['manifest_dir']
 # end
 
-execute 'make specs' do
-  user node['tuleap']['packaging_user']
-  cwd  node['tuleap']['manifest_dir']
-end
-
 case node['tuleap']['build_platforms']
 when 'all'
   platforms = %w(centos-5-i386
@@ -31,30 +26,28 @@ else
   raise "Expected node['tuleap']['build_plateforms'] to be one of {all|current}, but was #{node['tuleap']['build_plateforms']}"
 end
 
-execute "su -l vagrant -c 'make -C #{node['tuleap']['manifest_dir']} PLATEFORMS=\"#{platforms}\"'" #do # HOME=/home/vagrant
-  # user node['tuleap']['packaging_user']
-  # group 'mock'
-  # cwd  node['tuleap']['manifest_dir']
-# end
+script 'build tuleap dependencies' do
+  user        node['tuleap']['packaging_user']
+  cwd         node['tuleap']['manifest_dir']
+  interpreter 'bash'
+  code        <<-SHELL
+                make PLATEFORMS=#{platforms}
+              SHELL
+  environment 'HOME' => '/home/vagrant'
+end
 
-# script 'build tuleap dependencies' do
-#   user node['tuleap']['packaging_user']
-#   cwd  node['tuleap']['manifest_dir']
-#   code <<-SHELL
-#          make PLATEFORMS=#{platforms}
-#        SHELL
-# end
-# 
-# repo_path = "/mnt/tuleap/manifest/repos/centos/5/x86_64#{php_base}"
-# 
-# script 'build tuleap' do
-#   user node['tuleap']['packaging_user']
-#   cwd  '/mnt/tuleap/tuleap/tools/rpm'
-#   code <<-SHELL
-#          make PHP_BASE=#{php_base ? 'php53' : 'php'}
-#          mv /home/vagrant/rpmbuild/RPMS/noarch/* #{repo_path}
-#          createrepo #{repo_path}
-#          sudo yum clean all
-#          sudo yum clean expire-cache
-#        SHELL
-# end
+repo_path = "/mnt/tuleap/manifest/repos/centos/5/x86_64#{php_base}"
+
+script 'build tuleap' do
+  user        node['tuleap']['packaging_user']
+  cwd         '/mnt/tuleap/tuleap/tools/rpm'
+  interpreter 'bash'
+  code        <<-SHELL
+                make PHP_BASE=#{php_base ? 'php53' : 'php'}
+                cp /home/vagrant/rpmbuild/RPMS/noarch/* #{repo_path}
+                createrepo #{repo_path}
+                sudo yum clean all
+                sudo yum clean expire-cache
+              SHELL
+  environment 'HOME' => '/home/vagrant'
+end
