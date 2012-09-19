@@ -7,18 +7,14 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# Proceed to a normal RPM deployment
+## Proceed to a normal RPM deployment
 include_recipe 'tuleap::rpm_deployment'
 
-# Then remove the Tuleap RPM package, but keep the configuration files
-if node['tuleap']['php_base'] == 'php53'
-  package('tuleap-php53') { action :remove }
-else
-  package('tuleap') { action :remove }
-end
+## Then remove the Tuleap RPM package, but keep the configuration files
+package('tuleap') { action :remove }
 
-# Symlink the local git repository
-link '/usr/share/codendi' do
-  to '/mnt/tuleap/tuleap'
+## Symlink the local git repository
+link node['tuleap']['install_dir'] do
+  to node['tuleap']['source_dir']
   action :create
 end

@@ -5,4 +5,4 @@ run_list 'recipe[tuleap::base]',
          'recipe[tuleap::local_repos]',
          'recipe[tuleap::build]',
          'recipe[tuleap::rpm_deployment]'
-default_attributes 'tuleap' => {'repo' => 'local'}
+default_attributes 'tuleap' => {'yum_repo' => 'local'}

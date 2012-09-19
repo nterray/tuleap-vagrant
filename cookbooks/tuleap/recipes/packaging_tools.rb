@@ -17,24 +17,3 @@ group 'mock' do
   members node['tuleap']['packaging_user']
   append true
 end
-
-#   byacc
-#   enscript
-#   flex
-#   freetype-devel
-#   gcc-c++
-#   gd-devel
-#   httpd-devel
-#   java-1.6.0-openjdk
-#   krb5-devel
-#   libjpeg-devel
-#   libpng-devel
-#   libtool
-#   mysql-devel
-#   MySQL-python
-#   pam-devel
-#   pcre-devel
-#   #{php_base}-devel
-#   python-devel
-#   rcs
-#   rpmgraph (EPEL)
