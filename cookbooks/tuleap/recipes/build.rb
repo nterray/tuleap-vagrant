@@ -19,6 +19,7 @@ php_base      = node['tuleap']['php_base'] == 'php53' ? '-php53' : ''
 platforms     = "centos-5-#{arch}#{php_base}"
 packager_home = (packager == 'root' ? '/root' : "/home/#{packager}")
 repo_path     = "#{packager_home}/repos/centos/5/x86_64#{php_base}"
+build_log     = "#{packager_home}/logs/build.log"
 
 ## XXX:
 ##   Both the `script` and `execute` resources don't instanciate a login shell
@@ -41,7 +42,8 @@ script 'build tuleap dependencies' do
   flags       '-l'
   environment 'HOME' => packager_home
   code        <<-SHELL
-                make PLATEFORMS="#{platforms}"
+                > #{build_log}
+                make PLATEFORMS="#{platforms}" BUILD_DIR=#{packager_home} 2>&1 | tee #{build_log}
               SHELL
 end
 
@@ -52,7 +54,7 @@ script 'build tuleap' do
   flags       '-l'
   environment 'HOME' => packager_home
   code        <<-SHELL
-                make PHP_BASE=#{php_base ? 'php53' : 'php'}
+                make PHP_BASE=#{php_base ? 'php53' : 'php'} 2>&1 | tee #{build_log}
                 cp #{packager_home}/rpmbuild/RPMS/noarch/* #{repo_path}
                 createrepo #{repo_path}
                 sudo yum clean all
