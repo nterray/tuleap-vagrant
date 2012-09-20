@@ -18,7 +18,7 @@ arch          = `uname -m`.strip
 php_base      = node['tuleap']['php_base'] == 'php53' ? '-php53' : ''
 platforms     = "centos-5-#{arch}#{php_base}"
 packager_home = (packager == 'root' ? '/root' : "/home/#{packager}")
-repo_path     = "#{packager_home}/repos/centos/5/x86_64#{php_base}"
+repo_path     = "#{packager_home}/repos/centos/5/#{arch}#{php_base}"
 build_log     = "#{packager_home}/logs/build.log"
 
 ## XXX:
