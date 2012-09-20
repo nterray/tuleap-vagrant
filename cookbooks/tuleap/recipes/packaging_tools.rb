@@ -14,6 +14,6 @@ package 'createrepo'
 
 group 'mock' do
   action :manage
-  members node['tuleap']['packaging_user']
+  members [node['tuleap']['packaging_user']]
   append true
 end

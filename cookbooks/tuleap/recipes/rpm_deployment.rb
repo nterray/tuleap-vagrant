@@ -29,6 +29,8 @@ package 'tuleap-all'
 script "UPDATE mysql.user SET password=PASSWORD('') WHERE user='root'" do
   user        'root'
   interpreter 'bash'
+  flags       '-l'
+  environment 'HOME' => '/root'
   code        <<-SHELL
                 mysql_root_passwd=`test -f /root/.tuleap_passwd && \
                                    grep -i "Mysql root" /root/.tuleap_passwd | \
@@ -40,12 +42,13 @@ script "UPDATE mysql.user SET password=PASSWORD('') WHERE user='root'" do
                     -e "UPDATE mysql.user SET password=PASSWORD('') WHERE user='root'; FLUSH PRIVILEGES;"
                 fi
               SHELL
-  environment 'HOME' => '/root'
 end
 
 script '/usr/share/tuleap-install/setup.sh' do
   user        'root'
   interpreter 'bash'
+  flags       '-l'
+  environment 'HOME' => '/root'
   code        <<-SHELL
                 yes | /usr/share/tuleap-install/setup.sh \
                       --sys-default-domain   #{node['tuleap']['fqdn']} \
@@ -57,5 +60,4 @@ script '/usr/share/tuleap-install/setup.sh' do
                       --auto-passwd \
                   2>&1 | tee /var/log/tuleap-install.log
               SHELL
-  environment 'HOME' => '/root'
 end
