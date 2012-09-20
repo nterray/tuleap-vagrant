@@ -1,10 +1,47 @@
 # Tuleap + Vagrant
 
-This project tries to find a way to get started quickly and easily for
-potential Tuleap contributors.
+Provides an easy way to get started with Tuleap development, packaging and
+deployment.
 
+## Setting up the environment
 
-## The simplest way to contribute (cross-plateform)
+First, download and install [VirtualBox][1] and [Vagrant][2].
+
+We assume you have the following layout, where `my-tuleap-workspace` can be
+whatever you want:
+
+    my-tuleap-workspace
+    ├── manifest
+    ├── tuleap
+    └── vagrant
+
+The `manifest` repository is only needed for Tuleap packaging.
+
+So lets clone the `vagrant` repository into `my-tuleap-workspace`:
+
+    $ cd my-tuleap-workspace/
+    $ git clone gitolite@tuleap.net:tuleap/tools/vagrant.git
+    $ cd vagrant/
+
+**Optionally**, get the CentOS 5.8 box template, so that you can create as
+many boxes you want (if you don't, `vagrant` will download it for you when
+started):
+
+    $ vagrant add centos-5.8-x86_64-chef http://192.168.1.222/~sebn/centos-5.8-x86_64-chef.box
+
+Edit the `Vagrantfile` to match your needs.
+
+Finally, start the box:
+
+    $ vagrant up
+
+When `vagrant up` is run, it will automatically provision the VM using the
+tuleap [Chef][3] cookbook.
+
+Most useful commands are `vagrant {up [--no-provision]|provision|halt|suspend|resume|ssh}`.
+See `vagrant help` for more info.
+
+## Possible future
 
 Ideally, the tuleap repository should contain the following `Vagrantfile`:
 
@@ -21,59 +58,7 @@ Then, people willing to contribute would just have to download and install
 And voilà, no need to configure VirtualBox, no useless VM window, no
 CentOS install, no tuleap deployment, everything just works.
 
-
-## Customizing, packaging and distributing the tuleap.box file
-
-Clone this repository:
-
-    $ git clone ...
-    $ cd tuleap-vagrant/
-
-Get the CentOS 5.8 box template:
-
-    $ vagrant add centos5_8 http://tuleap.net/path/to/centos5_8.box
-
-Boot up a new CentOS instance:
-
-    $ vagrant up
-
-When `vagrant up` is run, it automatically provision the VM using the
-tuleap [Chef][3] cookbook.
-
-Now, you can start hacking the chef cookbook to change the way the VM is set
-up.
-
-To try the modified cookbook in the VM, run:
-
-    $ vagrant provision
-
-In case you need to restart the VM, run:
-
-    $ vagrant reload
-
-Once you're happy, you can package the new VM:
-
-    $ vagrant package --output ./tuleap.box
-
-Move the new `tuleap.box` to your public server, and you're done.
-
-
-## Useful documentation
-
-- https://gist.github.com/2178591
-- http://wiki.opscode.com/display/chef/Installing+Omnibus+Chef+Client+on+Linux+and+Mac
-- http://www.virtualbox.org/manual/ch04.html#idp11962400
-- http://www.if-not-true-then-false.com/2010/centos-netinstall-network-installation/
-- http://www.if-not-true-then-false.com/2010/install-virtualbox-guest-additions-on-fedora-centos-red-hat-rhel/
-- http://vagrantup.com/v1/docs/getting-started/index.html
-- http://pyfunc.blogspot.fr/2011/11/creating-base-box-from-scratch-for.html
-- http://www.yodi.me/blog/2011/10/26/build-base-box-vagrant-ubuntu-oneiric-11.10-server/
-
-[1]: http://www.virtualbox.org/
-[2]: http://vagrantup.com/
-[3]: http://www.opscode.com/chef/
-
-## Creating the initial CentOS 5.8 box
+## How was the initial box created ?
 
 - Download a CentOS 5.8 x86_64 netinstall iso.
 - Create a new virtual machine in VirtualBox, named `CentOS-5.8-x86_64-chef`
@@ -92,3 +77,18 @@ Move the new `tuleap.box` to your public server, and you're done.
   in VirtualBox Configuration.
 - Now you can make `centos-5.8-x86_64-chef.box` available on some web server,
   and use it to build `tuleap.box`
+
+## Useful documentation
+
+- https://gist.github.com/2178591
+- http://wiki.opscode.com/display/chef/Installing+Omnibus+Chef+Client+on+Linux+and+Mac
+- http://www.virtualbox.org/manual/ch04.html#idp11962400
+- http://www.if-not-true-then-false.com/2010/centos-netinstall-network-installation/
+- http://www.if-not-true-then-false.com/2010/install-virtualbox-guest-additions-on-fedora-centos-red-hat-rhel/
+- http://vagrantup.com/v1/docs/getting-started/index.html
+- http://pyfunc.blogspot.fr/2011/11/creating-base-box-from-scratch-for.html
+- http://www.yodi.me/blog/2011/10/26/build-base-box-vagrant-ubuntu-oneiric-11.10-server/
+
+[1]: http://www.virtualbox.org/
+[2]: http://vagrantup.com/
+[3]: http://www.opscode.com/chef/
