@@ -17,8 +17,8 @@ packager      = node['tuleap']['packaging_user']
 arch          = `uname -m`.strip
 php_base      = node['tuleap']['php_base'] == 'php53' ? '-php53' : ''
 platforms     = "centos-5-#{arch}#{php_base}"
-repo_path     = "#{node['tuleap']['manifest_dir']}/repos/centos/5/x86_64#{php_base}"
 packager_home = (packager == 'root' ? '/root' : "/home/#{packager}")
+repo_path     = "#{packager_home}/repos/centos/5/x86_64#{php_base}"
 
 ## XXX:
 ##   Both the `script` and `execute` resources don't instanciate a login shell
