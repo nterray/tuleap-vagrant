@@ -13,11 +13,10 @@ disable_yum_repository 'epel'
 disable_yum_repository 'epel-testing'
 
 ## Set up Tuleap stable repo
-## FIXME: needs authentication
-# tuleap_yum_repository 'stable' do
-#   description 'Official Releases'
-#   url         'https://tuleap.net/file/pub/tuleap/yum/tuleap/4.0/$basearch/'
-# end
+tuleap_yum_repository 'stable' do
+  description 'Official Releases'
+  url         'https://tuleap.net/pub/tuleap/yum/4.0/$basearch/'
+end
 
 ## Set up Tuleap development repo
 tuleap_yum_repository 'dev' do
