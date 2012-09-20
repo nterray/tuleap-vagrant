@@ -41,6 +41,14 @@ tuleap [Chef][3] cookbook.
 Most useful commands are `vagrant {up [--no-provision]|provision|halt|suspend|resume|ssh}`.
 See `vagrant help` for more info.
 
+## Known issues
+
+- You need to run `vagrant provision` twice (first time will add root to group
+  `mock` and fail, second time will work).
+- Some `yum clean` commands are hardcoded in `script` resources (extract to
+  definition ?).
+- There are no i386 / centos6 / debian boxes yet.
+
 ## Possible future
 
 Ideally, the tuleap repository should contain the following `Vagrantfile`:
