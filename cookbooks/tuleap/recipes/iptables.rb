@@ -7,7 +7,5 @@
 # All rights reserved - Do Not Redistribute
 #
 
-## Configure iptables for Tuleap
-cookbook_file '/etc/sysconfig/iptables' do
-  mode '0600'
-end
+## Disable iptables
+execute 'chkconfig iptables off'
