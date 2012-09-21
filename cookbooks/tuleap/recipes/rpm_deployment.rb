@@ -29,7 +29,6 @@ package 'tuleap-all'
 script "UPDATE mysql.user SET password=PASSWORD('') WHERE user='root'" do
   user        'root'
   interpreter 'bash'
-  flags       '-l'
   environment 'HOME' => '/root'
   code        <<-SHELL
                 mysql_root_passwd=`test -f /root/.tuleap_passwd && \
@@ -47,7 +46,6 @@ end
 script '/usr/share/tuleap-install/setup.sh' do
   user        'root'
   interpreter 'bash'
-  flags       '-l'
   environment 'HOME' => '/root'
   code        <<-SHELL
                 yes | /usr/share/tuleap-install/setup.sh \
