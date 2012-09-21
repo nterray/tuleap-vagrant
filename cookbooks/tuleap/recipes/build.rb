@@ -57,7 +57,5 @@ script 'build tuleap' do
                 make PHP_BASE=#{php_base ? 'php53' : 'php'} 2>&1 | tee #{build_log}
                 mv #{packager_home}/rpmbuild/RPMS/noarch/* #{repo_path}
                 createrepo #{repo_path}
-                sudo yum clean all
-                sudo yum clean expire-cache
               SHELL
 end
