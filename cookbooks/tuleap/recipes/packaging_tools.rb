@@ -43,6 +43,8 @@ package "#{php_base}-devel"
 # package "#{php_base}-xml"
 # package 'python-devel'
 # package 'rcs'
+package 'libxslt'
+package 'zip'
 
 group 'mock' do
   action :manage
