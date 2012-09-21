@@ -22,6 +22,8 @@ So lets clone the `vagrant` repository into `my-tuleap-workspace`:
     $ cd my-tuleap-workspace/
     $ git clone gitolite@tuleap.net:tuleap/tools/vagrant.git
     $ cd vagrant/
+    $ git submodule init
+    $ git submodule update
 
 **Optionally**, get the CentOS 5.8 box template, so that you can create as
 many boxes you want (if you don't, `vagrant` will download it for you when
