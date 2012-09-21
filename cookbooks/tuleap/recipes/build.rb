@@ -41,7 +41,7 @@ script 'build tuleap dependencies' do
   interpreter 'bash'
   environment 'HOME' => packager_home
   code        <<-SHELL
-                > #{build_log}
+                echo > #{build_log}
                 make PLATEFORMS="#{platform}" BUILD_DIR=#{packager_home} 2>&1 | tee #{build_log}
               SHELL
 end
@@ -57,3 +57,5 @@ script 'build tuleap' do
                 createrepo #{repo_path}
               SHELL
 end
+
+yum_clean

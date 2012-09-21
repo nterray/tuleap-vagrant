@@ -21,3 +21,5 @@ tuleap_yum_repository 'local' do
   description 'Local Repository'
   url         "file:///home/vagrant/repos/centos/5/$basearch#{php53}"
 end
+
+yum_clean
