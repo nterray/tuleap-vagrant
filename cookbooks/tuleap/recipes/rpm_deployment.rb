@@ -13,11 +13,6 @@ link node['tuleap']['install_dir'] do
   only_if "test -L #{node['tuleap']['install_dir']}"
 end
 
-## Set up common stuff
-include_recipe 'tuleap::base'
-
-yum_clean
-
 ## Install JSON PECL extension for PHP (needed by Tuleap):
 ##   - The PHP 5.1 version is php-pecl-json
 ##   - The PHP 5.3 version is included in php53-common
