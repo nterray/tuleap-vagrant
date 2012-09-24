@@ -8,4 +8,5 @@
 #
 
 ## Disable iptables
+execute 'service iptables stop'
 execute 'chkconfig iptables off'
