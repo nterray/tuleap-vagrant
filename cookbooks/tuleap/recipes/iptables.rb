@@ -8,5 +8,6 @@
 #
 
 ## Disable iptables
-execute 'service iptables stop'
-execute 'chkconfig iptables off'
+service "iptables" do
+  action [:stop, :disable]
+end
