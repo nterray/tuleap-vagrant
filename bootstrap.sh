@@ -33,3 +33,12 @@ mount -o loop VBoxGuestAdditions_$VBOX_VERSION.iso /mnt
 sh /mnt/VBoxLinuxAdditions.run --nox11
 umount /mnt
 rm -f VBoxGuestAdditions_$VBOX_VERSION.iso
+
+# Configure mock
+# -> cannot be done in provisionning because everything is done in one run
+# therefore root and vagrant users are not members of mock group (it would 
+# would require opening a new session (logout/login or su) but almost impossible
+# to do with chef so far.
+yum -y install mock
+usermod -a -G mock root
+usermod -a -G mock vagrant
