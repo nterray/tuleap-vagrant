@@ -1,0 +1,4 @@
+{
+  "run_list": [ "recipe[tuleap::base]",
+         "recipe[tuleap::git_deployment]" ]
+}

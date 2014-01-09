@@ -1,0 +1,14 @@
+# Chef solo can be used out of vagrant to leverage on chef recipes
+# without the burden of virtualbox
+
+On a fresh machine:
+
+#1 install chef
+   
+    curl -L https://www.opscode.com/chef/install.sh | bash
+
+#2 edit & adapt solo.rb and node.json
+
+#3 run chef-solo:
+
+    chef-solo -c solo.rb -j node.json
