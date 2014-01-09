@@ -39,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder ".", "/mnt/tuleap_sources", type: "nfs"
+  config.vm.synced_folder "../tuleap", "/mnt/tuleap_sources", type: "nfs"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -84,9 +84,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-     chef.cookbooks_path = "./tools/vagrant/chef-solo/cookbooks"
-     chef.roles_path = "./tools/vagrant/chef-solo/roles"
-     chef.data_bags_path = "./tools/vagrant/chef-solo/data_bags"
+     chef.cookbooks_path = "./cookbooks"
+     chef.roles_path = "./roles"
+     chef.data_bags_path = "./data_bags"
      chef.add_role "tuleap_development"
      chef.log_level = :debug
   end
