@@ -1,3 +1,9 @@
 [submodule "cookbooks/yum"]
 	path = cookbooks/yum
 	url = git://github.com/opscode-cookbooks/yum.git
+[submodule "cookbooks/yum-repoforge"]
+	path = cookbooks/yum-repoforge
+	url = https://github.com/opscode-cookbooks/yum-repoforge
+[submodule "cookbooks/yum-epel"]
+	path = cookbooks/yum-epel
+	url = https://github.com/opscode-cookbooks/yum-epel

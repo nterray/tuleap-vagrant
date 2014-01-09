@@ -1,71 +1,116 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant::Config.run do |config|
-  # Set up a CentOS 5 box.
-  # TODO: Move box to tuleap.net
-  config.vm.box = 'centos-5.8-x86_64-chef'
-  config.vm.box_url = 'http://192.168.1.222/~sebn/centos-5.8-x86_64-chef.box'
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
 
-  # Assign this VM to a host-only network IP, allowing you to access it
-  # via the IP. Host-only networks can talk to the host machine as well as
-  # any other machines on the same network, but cannot be accessed (through this
-  # network interface) by any external networks.
-  config.vm.network :hostonly, '10.11.13.11'
-  
-  # Assuming the following layout on the host:
-  # 
-  #   tuleap
-  #   ├── manifest
-  #   ├── tuleap
-  #   └── vagrant
-  #
-  # The following folders will be available on the guest:
-  #
-  #   /mnt/tuleap/manifest
-  #   /mnt/tuleap/tuleap
-  #   /mnt/tuleap/vagrant
-  # 
-  # NFS is prefered over VirtualBox shared folders, because it is faster.
-  config.vm.share_folder 'v-tuleap',
-                         '/mnt/tuleap',
-                         '..',
-                         :nfs => true
-  
-  # Ugly NFS hack
-  config.nfs.map_uid = Process.uid
-  config.nfs.map_gid = Process.gid
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
 
-  # Fill in the VM
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "centos65-x86_64"
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  config.vm.box_url = "https://tuleap.net/file/download.php/101/81/p18_r68/centos65-x86_64-base.box"
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # config.vm.network :forwarded_port, guest: 80, host: 8080
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network :private_network, ip: "10.11.13.11"
+
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network.
+  # config.vm.network :public_network
+
+  # If true, then any SSH connections made will enable agent forwarding.
+  # Default value: false
+  # config.ssh.forward_agent = true
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder ".", "/mnt/tuleap_sources", type: "nfs"
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  # config.vm.provider :virtualbox do |vb|
+  #   # Don't boot with headless mode
+  #   vb.gui = true
+  #
+  #   # Use VBoxManage to customize the VM. For example to change memory:
+  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
+  # end
+  #
+  # View the documentation for the provider you're using for more
+  # information on available options.
+
+  # Enable provisioning with Puppet stand alone.  Puppet manifests
+  # are contained in a directory path relative to this Vagrantfile.
+  # You will need to create the manifests directory and a manifest in
+  # the file tlp6.pp in the manifests_path directory.
+  #
+  # An example Puppet manifest to provision the message of the day:
+  #
+  # # group { "puppet":
+  # #   ensure => "present",
+  # # }
+  # #
+  # # File { owner => 0, group => 0, mode => 0644 }
+  # #
+  # # file { '/etc/motd':
+  # #   content => "Welcome to your Vagrant-built virtual machine!
+  # #               Managed by Puppet.\n"
+  # # }
+  #
+  # config.vm.provision :puppet do |puppet|
+  #   puppet.manifests_path = "manifests"
+  #   puppet.manifest_file  = "site.pp"
+  # end
+
+  # Enable provisioning with chef solo, specifying a cookbooks path, roles
+  # path, and data_bags path (all relative to this Vagrantfile), and adding
+  # some recipes and/or roles.
+  #
   config.vm.provision :chef_solo do |chef|
-    # Standard Chef layout
-    chef.cookbooks_path = 'cookbooks'
-    chef.roles_path     = 'roles'
-    chef.data_bags_path = 'data_bags'
-    
-    # Get more output
-    chef.log_level = :debug
-    
-    # Available Chef roles:
-    #   - tuleap: set up an instance from latest stable RPM
-    #   - tuleap_development: set up an instance from your local sources
-    #   - tuleap_packaging: set up everything to package and install tuleap
-    #                       from local repositories
-    chef.add_role 'tuleap_packaging'
-    
-    # Additional configuration (may be role-specific)
-    chef.json = {:tuleap => {
-      # Available PHP versions:
-      #   - php
-      #   - php53
-      :php_base => 'php53',
-      
-      # Use Vagrant user to build packages (should not be root anyway)
-      :packaging_user => 'vagrant',
-      
-      # Passed to setup.sh
-      :fqdn       => 'tuleap.local',
-      :ip_address => '10.11.13.11',
-    }}
+     chef.cookbooks_path = "./tools/vagrant/chef-solo/cookbooks"
+     chef.roles_path = "./tools/vagrant/chef-solo/roles"
+     chef.data_bags_path = "./tools/vagrant/chef-solo/data_bags"
+     chef.add_role "tuleap_development"
+     chef.log_level = :debug
   end
+
+  # Enable provisioning with chef server, specifying the chef server URL,
+  # and the path to the validation key (relative to this Vagrantfile).
+  #
+  # The Opscode Platform uses HTTPS. Substitute your organization for
+  # ORGNAME in the URL and validation key.
+  #
+  # If you have your own Chef Server, use the appropriate URL, which may be
+  # HTTP instead of HTTPS depending on your configuration. Also change the
+  # validation key to validation.pem.
+  #
+  # config.vm.provision :chef_client do |chef|
+  #   chef.chef_server_url = "https://api.opscode.com/organizations/ORGNAME"
+  #   chef.validation_key_path = "ORGNAME-validator.pem"
+  # end
+  #
+  # If you're using the Opscode platform, your validator client is
+  # ORGNAME-validator, replacing ORGNAME with your organization name.
+  #
+  # If you have your own Chef Server, the default validation client name is
+  # chef-validator, unless you changed the configuration.
+  #
+  #   chef.validation_client_name = "ORGNAME-validator"
 end
