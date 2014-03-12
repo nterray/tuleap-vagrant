@@ -7,3 +7,6 @@
 [submodule "cookbooks/yum-epel"]
 	path = cookbooks/yum-epel
 	url = https://github.com/opscode-cookbooks/yum-epel
+[submodule "cookbooks/tuleap"]
+	path = cookbooks/tuleap
+	url = https://github.com/Enalean/tuleap-chef-cookbook.git
